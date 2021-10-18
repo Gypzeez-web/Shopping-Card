@@ -6,33 +6,24 @@ const EditProduct = (props) => {
   const [productCategory, setProductCategory] = useState("");
   const [productPrice, setProductPrice] = useState("");
   const [message, setMessage] = useState("");
-  const [fileName, setFileName] = useState("");
-
-
-  const onChangeFile = (e) => {
-    setFileName(e.target.files[0]);
-  };
 
   const changeOnClick = (e) => {
     e.preventDefault();
 
-    
-
-    const formData=new FormData();
-    formData.append("productName",productName);
-    formData.append("productCategory",productCategory);
-    formData.append("productPrice",productPrice);
-    formData.append("productImage",fileName);
+    const shoppingcard = {
+      productName,
+      productCategory,
+      productPrice,
+    };
 
     setProductName("");
     setProductCategory("");
     setProductPrice("");
-    setFileName("");
 
     axios
       .put(
         `http://localhost:8080/shoppingcard/update${props.match.params.id}`,
-        formData
+        shoppingcard
       )
       .then((res) => setMessage(res.data))
       .catch((err) => console.log(err));
@@ -45,7 +36,6 @@ const EditProduct = (props) => {
         setProductName(res.data.productName);
         setProductCategory(res.data.productCategory);
         setProductPrice(res.data.productPrice);
-        setFileName(res.data.productImage);
       })
       .catch((error) => console.log(error));
   }, []);
@@ -86,16 +76,6 @@ const EditProduct = (props) => {
             value={productPrice}
             id="productPrice"
             placeholder="Enter Product Price"
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="productImagee">Product Image</label>
-          <input
-            type="file"
-            className="form-control"
-            fileName="productImage"
-            placeholder="Insert Product Image"
-            onChange={onChangeFile}
           />
         </div>
         <button type="submit" className="btn btn-primary">

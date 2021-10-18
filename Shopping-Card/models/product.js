@@ -13,14 +13,10 @@ const ShoppingCardSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  productImage: {
-    type: String,
-    required: true,
-  },
-  postDate:{
+  postDate: {
     type: Date,
-    default:Date.now
-  }
+    default: Date.now,
+  },
 });
 
 const ShoppingCard = mongoose.model("ShoppingCards", ShoppingCardSchema);

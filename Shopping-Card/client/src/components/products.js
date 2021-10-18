@@ -8,7 +8,7 @@ const Products = ({ posts }) => {
 
   const deleteProduct = (id) => {
     axios
-      .delete(`http://localhost:8080/shoppingcard/delete${id}`)
+      .delete(`http://localhost:8080/shoppingcard/${id}`)
       .then((res) => alert(res.data))
       .catch((err) => console.log(err));
     setProduct(product.filter((elem) => elem._id !== id));
@@ -30,10 +30,6 @@ const Products = ({ posts }) => {
       ) : (
         posts.map((shoppingcard, key) => (
           <div className="container " key={key}>
-            <img
-              src={`http://localhost:8080/shoppingcard${shoppingcard.productImage}`}
-              alt="..."
-            />
             <Link to={{ pathname: `/shoppingcard/${shoppingcard._id}` }}>
               <h3>{shoppingcard.productName}</h3>
             </Link>

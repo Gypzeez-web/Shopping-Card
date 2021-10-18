@@ -5,29 +5,22 @@ const AddProduct = () => {
   const [productName, setProductName] = useState("");
   const [productCategory, setProductCategory] = useState("");
   const [productPrice, setProductPrice] = useState("");
-  const [fileName, setFileName] = useState("");
-
-  const onChangeFile = (e) => {
-    setFileName(e.target.files[0]);
-  };
 
   const changeOnClick = (e) => {
     e.preventDefault();
 
-  
-    const formData=new FormData();
-    formData.append("productName",productName);
-    formData.append("productCategory",productCategory);
-    formData.append("productPrice",productPrice);
-    formData.append("productImage",fileName);
+    const shoppingcard = {
+      productName,
+      productCategory,
+      productPrice,
+    };
 
     setProductName("");
     setProductCategory("");
     setProductPrice("");
-    setFileName("");
 
     axios
-      .post("http://localhost:8080/shoppingcard/add", formData)
+      .post("http://localhost:8080/shoppingcard/add", shoppingcard)
       .then((res) => console.log(res.data))
       .catch((err) => console.log(err));
   };
@@ -67,16 +60,6 @@ const AddProduct = () => {
             value={productPrice}
             id="productPrice"
             placeholder="Enter Product Price"
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="productImagee">Product Image</label>
-          <input
-            type="file"
-            className="form-control"
-            fileName="productImage"
-            placeholder="Insert Product Image"
-            onChange={onChangeFile}
           />
         </div>
         <button type="submit" className="btn btn-primary">
