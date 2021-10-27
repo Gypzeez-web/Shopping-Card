@@ -5,7 +5,7 @@ import header from "./images/header.jpeg";
 const Header = () => {
   return (
     <MainContainer>
-      <h1>Shopping Card <br/> Wel Come</h1>
+      <h1>Shopping Card <br/> WelCome</h1>
       
     </MainContainer>
   );

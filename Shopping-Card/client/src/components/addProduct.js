@@ -36,7 +36,6 @@ const AddProduct = () => {
             onChange={(e) => setProductName(e.target.value)}
             className="form-control"
             value={productName}
-            id="productName"
             placeholder="Enter Product Name"
           />
         </div>
